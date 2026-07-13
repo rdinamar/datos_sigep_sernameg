@@ -29,6 +29,7 @@ Y un hoja de resumen que calcula las cobertura programada, mujeres activas y por
 
 Para dudas y consultas pueden escribir a mi correo rdinamarca@prodemu.cl
 """
+import streamlit as st
 import pandas as pd
 import glob
 import numpy as np
