@@ -29,14 +29,37 @@ Y un hoja de resumen que calcula las cobertura programada, mujeres activas y por
 
 Para dudas y consultas pueden escribir a mi correo rdinamarca@prodemu.cl
 """
-
-from google.colab import files
-uploaded = files.upload()
-
 import pandas as pd
 import glob
 import numpy as np
 from datetime import datetime
+
+st.file_uploader(
+    "Seleccione las planillas",
+    type="xlsx",
+    accept_multiple_files=True
+)
+
+uploaded_files = st.file_uploader(
+    "Seleccione archivos",
+    type="xlsx",
+    accept_multiple_files=True
+)
+
+if uploaded_files:
+
+    dataframes=[]
+
+    for archivo in uploaded_files:
+
+        df_temp = pd.read_excel(
+            archivo,
+            skiprows=1
+        )
+
+        dataframes.append(df_temp)
+
+    df = pd.concat(dataframes)
 
 # === LECTURA DE ARCHIVOS ===
 ruta_carpeta = "/content"  # Cambia por tu ruta
@@ -112,10 +135,7 @@ for prov in provincias:
 fecha_actual = datetime.now().strftime("%Y-%m-%d")
 nombre_archivo = f"{ruta_carpeta}/completo_{fecha_actual}.xlsx"
 
-with pd.ExcelWriter(nombre_archivo, engine='openpyxl') as writer:
-    # Hoja general
-    df.to_excel(writer, sheet_name='talleres', index=False)
-    q_region.to_excel(writer, sheet_name='q_region')
+BytesIO()
 
     # Escribir resumen regional
     resumen_df = pd.DataFrame({
