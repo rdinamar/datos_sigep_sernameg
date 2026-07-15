@@ -14,6 +14,6 @@ st.set_page_config(
 st.title("📊 Procesamiento de datos SIGEP")
 st.write("Suba uno o más archivos Excel descargados desde SIGEP.")
 
-uploaded_file = st.file_uploader("Upload a CSV file", type=["csv"])
+uploaded_file = st.file_uploader("Upload a Excel file", type=["xlsx"])
 
 
